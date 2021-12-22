@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.playlist.helper" name="Script for helping handle Playlist Functions in skins" version="0.0.06" provider-name="marduk">
+	<requires>
+		<import addon="xbmc.python" version="3.0.0"/>
+	</requires>
+	<extension point="xbmc.python.library" library="actions.py" />
+	<extension point="kodi.context.item">
+		<menu id="kodi.core.main">
+			<item library="context_playlistcontainer_fn.py" args="minus">
+				<label>$LOCALIZE[13332]</label>
+				<visible>string.isequal(window(home).property(playlist_itemcontrol),enable)</visible>
+			</item>
+			<item library="context_playlistcontainer_fn.py" args="plus">
+				<label>$LOCALIZE[13333]</label>
+				<visible>string.isequal(window(home).property(playlist_itemcontrol),enable)</visible>
+			</item>
+			<item library="context_playlistcontainer_fn.py" args="delete">
+				<label>$LOCALIZE[15015]</label>
+				<visible>string.isequal(window(home).property(playlist_itemcontrol),enable)</visible>
+			</item>
+			<item library="context_playlist_queuing.py" args="insert">
+				<label>$LOCALIZE[10008]</label>
+				<visible>!Window.IsMedia + [String.IsEqual(ListItem.dbtype,artist) | String.IsEqual(ListItem.dbtype,album) | String.IsEqual(ListItem.dbtype,song) | String.IsEqual(ListItem.dbtype,year) | String.IsEqual(ListItem.dbtype,originalyear) | String.IsEqual(ListItem.dbtype,genre)]</visible>
+			</item>
+			<item library="context_playlist_queuing.py" args="add">
+				<label>$LOCALIZE[13347]</label>
+				<visible>!Window.IsMedia + [String.IsEqual(ListItem.dbtype,artist) | String.IsEqual(ListItem.dbtype,album) | String.IsEqual(ListItem.dbtype,song) | String.IsEqual(ListItem.dbtype,year) | String.IsEqual(ListItem.dbtype,originalyear) | String.IsEqual(ListItem.dbtype,genre)]</visible>
+			</item>
+			<item library="context_actions.py" args="playmedia_dir">
+				<label>$LOCALIZE[22083]</label>
+				<visible>[Window.IsMedia + Container.Content(Albums) + string.startswith(listitem.label, *)] | [!Window.IsMedia + [String.IsEqual(ListItem.DBtype,artist) | String.IsEqual(ListItem.DBtype,album)]]</visible>
+			</item>
+			<menu>
+				<label>$ADDON[context.playlist 32000]</label>
+				<item library="context_actions.py" args="play_prev">
+					<label>$ADDON[context.playlist 32050]</label>
+					<visible>Player.HasMedia + MusicPlayer.Offset(-1).Exists</visible>
+				</item>
+				<item library="context_actions.py" args="play_next">
+					<label>$ADDON[context.playlist 32051]</label>
+					<visible>Player.HasMedia + MusicPlayer.Offset(1).Exists</visible>
+				</item>
+				<item library="context_actions.py" args="open_playlist">
+					<label>$LOCALIZE[13350]</label>
+					<visible>!Window.IsActive(MyPlaylist.xml) + [MusicPlayer.Offset(-1).Exists | MusicPlayer.Offset(1).Exists]</visible>
+				</item>
+				<item library="context_actions.py" args="save_playlist">
+					<label>$LOCALIZE[190] $LOCALIZE[559]</label>
+					<visible>!Window.IsActive(MyPlaylist.xml) + [MusicPlayer.Offset(-1).Exists | MusicPlayer.Offset(1).Exists]</visible>
+				</item>
+				<item library="context_actions.py" args="open_playercontrol">
+					<label>$LOCALIZE[10114]</label>
+					<visible>!Window.IsActive(playercontrols) + [Player.HasMedia + [MusicPlayer.Offset(-1).Exists | MusicPlayer.Offset(1).Exists]]</visible>
+				</item>
+			</menu>
+		</menu>
+	</extension>
+	<extension point="kodi.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en_GB">Enable Playlist Functions for Contextmenu which currently not provided by Kodi core</summary>
+		<description lang="en_GB">Enable Playlist Functions for Contextmenu which currently not provided by Kodi core[CR]such as ...
+• for skins, which use a dynamic container filled with currently playing playlist (playlistmusic:// ; playlistvideo://)
+    - switch playlistitems (move up/down)
+    - delete playlistitem
+
+• play all songs by artist
+     - if either media window and on '. all albums' listitem entry, or if not media window for artist or album items (clears playlist, and start plaing folder)
+
+• activate playlist window
+• activate playercontrols dialog
+• save currently active playlist
+• play next song
+• play previous song
+
+</description>
+		<license>GPL-2.0-or-later</license>
+		<forum />
+		<source />
+		<assets>
+			<icon>resources/icon.png</icon>
+			<fanart>resources/fanart.png</fanart>
+		</assets>
+	</extension>
+</addon>
