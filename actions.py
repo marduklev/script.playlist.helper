@@ -10,9 +10,11 @@ def main():
         playoffset()
 
 def playoffset():
-    container_id = xbmc.getInfoLabel('system.currentcontrolid')
     playlistid = 1 if xbmc.getCondVisibility('player.hasvideo') else 0
     playlist = xbmc.PlayList(playlistid)
+    
+    container_id = xbmc.getInfoLabel('system.currentcontrolid')
+    
     current = playlist.getposition()
     selected = int(xbmc.getInfoLabel('container(%s).currentitem' % container_id)) - 1
     index = int(selected) - int(current)
@@ -23,10 +25,11 @@ def defaultselect_mediaitem():
     playlistid = 1 if xbmc.getCondVisibility('player.hasvideo') else 0
     playlist = xbmc.PlayList(0)
     
+    xbmc.executebuiltin('setproperty(playlist_updating,true,home)')
+    
     dbid = xbmc.getInfoLabel('listItem.dbid') if xbmc.getCondVisibility('!string.isempty(listitem.dbid) + !string.isequal(listitem.dbtype,year)') else 0
     dbtype = xbmc.getInfoLabel('listItem.dbtype') if xbmc.getCondVisibility('!string.isempty(listitem.dbtype)') else None
     
-    xbmc.executebuiltin('setproperty(playlist_updating,true,home)')
     item_artist = xbmc.getInfoLabel('listitem.artist')
     item_title = xbmc.getInfoLabel('listitem.title') if dbtype == 'song' else xbmc.getInfoLabel('listItem.album')
     item_label = xbmc.getInfoLabel('listItem.label')

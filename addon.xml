@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.playlist.helper" name="Script for helping handle Playlist Functions in skins" version="0.0.06" provider-name="marduk">
+<addon id="script.playlist.helper" name="Playlist Helper" version="0.0.06" provider-name="marduk">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 	</requires>
@@ -32,14 +32,6 @@
 			</item>
 			<menu>
 				<label>$ADDON[context.playlist 32000]</label>
-				<item library="context_actions.py" args="play_prev">
-					<label>$ADDON[context.playlist 32050]</label>
-					<visible>Player.HasMedia + MusicPlayer.Offset(-1).Exists</visible>
-				</item>
-				<item library="context_actions.py" args="play_next">
-					<label>$ADDON[context.playlist 32051]</label>
-					<visible>Player.HasMedia + MusicPlayer.Offset(1).Exists</visible>
-				</item>
 				<item library="context_actions.py" args="open_playlist">
 					<label>$LOCALIZE[13350]</label>
 					<visible>!Window.IsActive(MyPlaylist.xml) + [MusicPlayer.Offset(-1).Exists | MusicPlayer.Offset(1).Exists]</visible>
@@ -57,25 +49,31 @@
 	</extension>
 	<extension point="kodi.addon.metadata">
 		<platform>all</platform>
-		<summary lang="en_GB">Enable Playlist Functions for Contextmenu which currently not provided by Kodi core</summary>
-		<description lang="en_GB">Enable Playlist Functions for Contextmenu which currently not provided by Kodi core[CR]such as ...
-• for skins, which use a dynamic container filled with currently playing playlist (playlistmusic:// ; playlistvideo://)
-    - switch playlistitems (move up/down)
-    - delete playlistitem
+		<summary lang="en_GB">Enable Playlist Functions for Contextmenu which currently not provided by Kodi core and provides select Actions for Skinners</summary>
+		<description lang="en_GB">Enable Playlist Functions for Contextmenu which currently not provided by Kodi core and Provide select Actions for Skinners[CR]
+Contextmenu
+  • for skins, which use a dynamic container filled with currently playing playlist (playlistmusic:// ; playlistvideo://)
+     - switch playlistitems (move up or down)
+     - delete playlistitem
 
-• play all songs by artist
+  • play all songs by artist
      - if either media window and on '. all albums' listitem entry, or if not media window for artist or album items (clears playlist, and start plaing folder)
 
-• activate playlist window
-• activate playercontrols dialog
-• save currently active playlist
-• play next song
-• play previous song
+  • activate playlist window
+  • activate playercontrols dialog
+  • save currently active playlist
+
+
+Select Actions
+  • play selected Song if container filled with (playlistmusic:// ; playlistvideo://)
+  • conditional select actions for dynamic content containers in Custom Windows/Containers (directory or file)
+     - add to playlist as next title and play item (default ~ !Skin.HasSetting(&lt; dbtype &gt;_select_queue))
+     - add to playlist as next title (if Skin.HasSetting(&lt; dbtype &gt;_select_queue))
 
 </description>
 		<license>GPL-2.0-or-later</license>
-		<forum />
-		<source />
+		<forum></forum>
+		<source>https://github.com/marduklev/script.playlist.helper</source>
 		<assets>
 			<icon>resources/icon.png</icon>
 			<fanart>resources/fanart.png</fanart>

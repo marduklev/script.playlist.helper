@@ -13,16 +13,12 @@ def main():
             artistid = xbmc.getInfoLabel('listitem.dbid')
             xbmc.executebuiltin('playmedia(musicdb://artists/%s/-1/-2/?albumartistonly=false&amp;artistid=%s,isdir,1)' % (artistid,artistid))
     
-    if method == 'play_prev':
-        xbmc.Player().playprevious()
-    
-    if method == 'play_next':
-        xbmc.Player().playnext()
-    
     if method == 'open_playlist':
         xbmc.executebuiltin('action(playlist)')
     
     if method == 'save_playlist':
+        xbmc.executebuiltin('setproperty(addon_forcedaction,back,home)')
+   
         xbmc.executebuiltin('Action(playlist)')
         xbmc.executebuiltin('SendClick(21)')
     

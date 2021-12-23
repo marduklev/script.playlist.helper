@@ -80,6 +80,14 @@ Context Menu Items and Functions
 					</variable>
 			
 			
+			- the playlist save function just activates window and send click to control 21 (save button)
+		      and set a window property  ''setproperty(addon_forcedaction,back,home)'' 
+			  
+			  if you dont wanna move back manually just add following onunload commands to 'dialogkeyboard.xml'
+			  
+					  <onunload condition="String.IsEqual(Window(home).Property(addon_forcedaction),back)">Action(back)</onunload>
+					  <onunload condition="!String.IsEmpty(Window(home).Property(addon_forcedaction))">ClearProperty(addon_forcedaction,home)</onunload>
+			
 				
 				
 - activate playlist window - if playlist filled
@@ -105,6 +113,7 @@ KNOWN ISSUES:
 						 switch 0(first) to 8(last), result in wrong focus position
 						 
 TO DO:
+- hide items based upon addon setting
 - playlist save code - look at docs
 - get better diff of current playlist by getting an identifyer - look at docs/jsonrpc get.playlistidentifyer?
   ( currently just checks if a video is playing, no matter which playlist id is active (its absolutely possible to have video files within a active music playlist, even if rare case))

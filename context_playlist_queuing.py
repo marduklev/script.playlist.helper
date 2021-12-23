@@ -21,16 +21,16 @@ def main():
     if method == 'add':
         index = playlist.size() + 1
         if int(dbid) > 0:
-            xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Playlist.Add", "params": { "item": {"%sid": %s}, "playlistid": %s}}' % (dbtype,dbid,playlistid))
+            xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Playlist.Add", "params": { "item": { "%sid": %s}, "playlistid": %s}}' % (dbtype,dbid,playlistid))
         elif int(dbid) == 0:
             item = 'file' if xbmc.getCondVisibility('!string.isempty(listitem.filenameandpath)') else 'directory'
             url = xbmc.getInfoLabel('listitem.filenameandpath') if xbmc.getCondVisibility('!string.isempty(listitem.filenameandpath) + [!string.isequal(listitem.dbtype,year) + !string.isequal(listitem.dbtype,genre)]') else xbmc.getInfoLabel('listitem.folderpath')
-            xbmc.executeJSONRPC('{"jsonrpc": "2.0",  "id": 1, "method": "Playlist.Add", "params": { "item": { "%s": "%s"}, "playlistid": %s}}' % (item,url,playlistid))
+            xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Playlist.Add", "params": { "item": { "%s": "%s"}, "playlistid": %s}}' % (item,url,playlistid))
     
     if method == 'insert':
         index = playlist.getposition() + 1
         if int(dbid) > 0:
-            json_result_addtolist = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Playlist.Insert", "params": { "item": {"%sid": %s}, "playlistid": %s, "position": %s}}' % (dbtype,dbid,playlistid,index))
+            json_result_addtolist = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Playlist.Insert", "params": { "item": { "%sid": %s}, "playlistid": %s, "position": %s}}' % (dbtype,dbid,playlistid,index))
         elif int(dbid) == 0:
             item = 'file' if xbmc.getCondVisibility('!string.isempty(listitem.filenameandpath)') else 'directory'
             url = xbmc.getInfoLabel('listitem.filenameandpath') if xbmc.getCondVisibility('!string.isempty(listitem.filenameandpath) + [!string.isequal(listitem.dbtype,year) + !string.isequal(listitem.dbtype,genre)]') else xbmc.getInfoLabel('listitem.folderpath')
