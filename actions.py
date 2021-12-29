@@ -6,20 +6,18 @@ def main():
     if method == 'action=select':
         defaultselect_mediaitem()
     else:
-        # if method == 'action=playlist_playoffset':
         playoffset()
 
 def playoffset():
+    xbmc.executebuiltin('setproperty(playlist_updating,true,home)')
     playlistid = 1 if xbmc.getCondVisibility('player.hasvideo') else 0
-    playlist = xbmc.PlayList(playlistid)
-    
+    playlist = xbmc.PlayList(playlistid)   
     container_id = xbmc.getInfoLabel('system.currentcontrolid')
-    
     current = playlist.getposition()
     selected = int(xbmc.getInfoLabel('container(%s).currentitem' % container_id)) - 1
     index = int(selected) - int(current)
     xbmc.executebuiltin('playlist.playoffset(%s)' % (index))
-
+    xbmc.executebuiltin('clearproperty(playlist_updating,home)')
 
 def defaultselect_mediaitem():
     playlistid = 1 if xbmc.getCondVisibility('player.hasvideo') else 0

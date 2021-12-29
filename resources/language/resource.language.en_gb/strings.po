@@ -1,9 +1,9 @@
 # Kodi Media Center language file
-# Addon Name: Context Playlist
-# Addon id: context.playlist
+# Addon Name: Playlist Helper
+# Addon id: script.playlist.helper
 # Addon Provider: marduk
 msgid ""
-msgstr """"
+msgstr ""
 "Project-Id-Version: XBMC Addons\n"
 "Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -18,32 +18,32 @@ msgstr """"
 
 msgctxt "#32000"
 msgid "Playlist Context Addon"
-msgstr """"
+msgstr ""
 
 msgctxt "#32001"
 msgid "Playlist Context Addon 1"
-msgstr """"
+msgstr ""
 
 msgctxt "#32002"
 msgid "Playlist Context Addon 2"
-msgstr """
+msgstr ""
 
 msgctxt "#32003"
 msgid "Playlist Context Addon 3"
-msgstr """
+msgstr ""
 
 msgctxt "#32004"
 msgid "Playlist Context Addon 4"
-msgstr """
+msgstr ""
 
 msgctxt "#32005"
 msgid "Playlist Context Addon 5"
-msgstr """
+msgstr ""
 
 msgctxt "#32050"
 msgid "Playback Previous Title"
-msgstr """
+msgstr ""
 
 msgctxt "#32051"
 msgid "Playback Next Title"
-msgstr """
+msgstr ""

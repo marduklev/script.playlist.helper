@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.playlist.helper" name="Playlist Helper" version="0.0.06" provider-name="marduk">
+<addon id="script.playlist.helper" name="Playlist Helper" version="0.0.07" provider-name="marduk">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 	</requires>
-	<extension point="xbmc.python.library" library="actions.py" />
 	<extension point="kodi.context.item">
 		<menu id="kodi.core.main">
 			<item library="context_playlistcontainer_fn.py" args="minus">
@@ -31,7 +30,7 @@
 				<visible>[Window.IsMedia + Container.Content(Albums) + string.startswith(listitem.label, *)] | [!Window.IsMedia + [String.IsEqual(ListItem.DBtype,artist) | String.IsEqual(ListItem.DBtype,album)]]</visible>
 			</item>
 			<menu>
-				<label>$ADDON[context.playlist 32000]</label>
+				<label>$ADDON[script.playlist.helper 32000]</label>
 				<item library="context_actions.py" args="open_playlist">
 					<label>$LOCALIZE[13350]</label>
 					<visible>!Window.IsActive(MyPlaylist.xml) + [MusicPlayer.Offset(-1).Exists | MusicPlayer.Offset(1).Exists]</visible>
@@ -47,6 +46,9 @@
 			</menu>
 		</menu>
 	</extension>
+	<extension point="xbmc.python.script" library="actions.py">
+        <provides>executable</provides>
+    </extension>
 	<extension point="kodi.addon.metadata">
 		<platform>all</platform>
 		<summary lang="en_GB">Enable Playlist Functions for Contextmenu which currently not provided by Kodi core and provides select Actions for Skinners</summary>
